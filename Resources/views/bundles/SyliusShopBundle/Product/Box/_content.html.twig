@@ -1,7 +1,11 @@
 {% if product.variants.empty() %}
-    {% include '@SyliusShop/Product/Box/_product.html.twig' with { product: product, variant: null } %}
+    <div class="col-lg-4 col-md-6 mb-3">
+        {% include '@SyliusShop/Product/Box/_product.html.twig' with { product: product, variant: null } %}
+    </div>
 {% else %}
     {% for variant in product.variants %}
-        {% include '@SyliusShop/Product/Box/_product.html.twig' with { product: product, variant: variant } %}
+        <div class="col-lg-4 col-md-6 mb-3">
+            {% include '@SyliusShop/Product/Box/_product.html.twig' with { product: product, variant: variant } %}
+        </div>
     {% endfor %}
 {% endif %}
