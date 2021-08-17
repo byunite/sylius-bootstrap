@@ -1,0 +1,21 @@
+{
+    "type": "symfony-bundle",
+    "name": "unite/sylius-bootstrap-bundle",
+    "description": "Build your sylius shop frontend on bootstrap 5 and webpack encore",
+    "keywords": ["symfony", "sylius", "bundle", "bootstrap", "template"],
+    "require": {
+        "sylius/sylius": "1.9.*"
+    },
+    "autoload": {
+        "psr-4": { "Unite\\SyliusBootstrapBundle\\": "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Franz Wilding",
+            "email": "franz@unite.co.at"
+        }
+    ]
+}

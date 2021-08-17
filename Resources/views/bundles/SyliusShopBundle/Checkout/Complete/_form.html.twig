@@ -1,0 +1,5 @@
+{{ form_row(form.notes, sylius_test_form_attribute('extra-notes')|merge({'attr': {'rows': 3}})) }}
+{% if form.terms is defined %}
+    {% form_theme form.terms '@SetonoSyliusTermsPlugin/Shop/Form/termsTheme.html.twig' %}
+    {{ form_row(form.terms) }}
+{% endif %}

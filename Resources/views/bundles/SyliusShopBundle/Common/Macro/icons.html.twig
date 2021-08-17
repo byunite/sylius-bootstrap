@@ -1,0 +1,68 @@
+{% macro base(icon) %}
+    <i data-feather="{{ icon }}"></i>
+{% endmacro %}
+
+{% macro cart() %}
+    {% import _self as icons %}
+    {{ icons.base('shopping-cart') }}
+{% endmacro %}
+
+{% macro star() %}
+    {% import _self as icons %}
+    {{ icons.base('star') }}
+{% endmacro %}
+
+{% macro success() %}
+    {% import _self as icons %}
+    {{ icons.base('check-circle') }}
+{% endmacro %}
+
+{% macro danger() %}
+    {% import _self as icons %}
+    {{ icons.base('alert-triangle') }}
+{% endmacro %}
+
+{% macro info() %}
+    {% import _self as icons %}
+    {{ icons.base('info') }}
+{% endmacro %}
+
+{% macro arrowUp() %}
+    {% import _self as icons %}
+    {{ icons.base('arrow-up') }}
+{% endmacro %}
+
+{% macro address() %}
+    {% import _self as icons %}
+    {{ icons.base('home') }}
+{% endmacro %}
+
+{% macro transport() %}
+    {% import _self as icons %}
+    {{ icons.base('truck') }}
+{% endmacro %}
+
+{% macro creditCard() %}
+    {% import _self as icons %}
+    {{ icons.base('credit-card') }}
+{% endmacro %}
+
+{% macro flag() %}
+    {% import _self as icons %}
+    {{ icons.base('flag') }}
+{% endmacro %}
+
+{% macro times() %}
+    {% import _self as icons %}
+    {{ icons.base('x') }}
+{% endmacro %}
+
+{% macro reload() %}
+    {% import _self as icons %}
+    {{ icons.base('refresh-cw') }}
+{% endmacro %}
+
+{% macro plus() %}
+    {% import _self as icons %}
+    {{ icons.base('plus-circle') }}
+{% endmacro %}

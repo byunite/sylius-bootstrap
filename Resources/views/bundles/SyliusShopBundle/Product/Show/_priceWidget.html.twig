@@ -1,0 +1,13 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+
+<div class="mb-3">
+    <div class="d-flex justify-content-between align-items-center">
+        {% if not product.variants.empty() %}
+            {% include '@SyliusShop/Product/Show/_price.html.twig' %}
+        {% endif %}
+        <small class="text-muted">{{ product.code }}</small>
+    </div>
+    <span>
+        {{ 'product_price_info'|trans({ '%delivery_infos_url%': '#' }, 'unite')|raw }}
+    </span>
+</div>

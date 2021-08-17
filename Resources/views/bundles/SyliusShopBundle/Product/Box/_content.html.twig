@@ -1,0 +1,7 @@
+{% if product.variants.empty() %}
+    {% include '@SyliusShop/Product/Box/_product.html.twig' with { product: product, variant: null } %}
+{% else %}
+    {% for variant in product.variants %}
+        {% include '@SyliusShop/Product/Box/_product.html.twig' with { product: product, variant: variant } %}
+    {% endfor %}
+{% endif %}

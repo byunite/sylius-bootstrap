@@ -1,0 +1,20 @@
+{% if locales|length > 1 %}
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ active|sylius_locale_name }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% for code in locales %}
+                    {% if code is not same as(active) %}
+                        <li>
+                            <a class="dropdown-item" href="{{ path('sylius_shop_switch_locale', {'code': code}) }}">
+                                {{ code|sylius_locale_name }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+{% endif %}

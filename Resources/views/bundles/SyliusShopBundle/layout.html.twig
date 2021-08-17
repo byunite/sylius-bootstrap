@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="{{ app.request.locale|slice(0, 2) }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>{% block title %}{{ sylius.channel.name }}{% endblock %}</title>
+
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    {% block metatags %}
+    {% endblock %}
+
+    {% block stylesheets %}
+        {{ sylius_template_event('sylius.shop.layout.stylesheets') }}
+    {% endblock %}
+
+    {{ sylius_template_event('sylius.shop.layout.head') }}
+</head>
+
+<body>
+{{ sylius_template_event('sylius.shop.layout.before_body') }}
+{% block top %}
+    <nav class="navbar navbar-expand-lg navbar-{{ navbar_style ?? 'light' }} {{ navbar_bg ?? '' }}">
+        <div class="container-fluid">
+
+            {% include '@SyliusShop/Layout/Header/_logo.html.twig' %}
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                {% include '@SyliusShop/Menu/_security.html.twig' %}
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+<div class="container my-4">
+    {% include '@SyliusShop/_flashes.html.twig' %}
+
+    {{ sylius_template_event('sylius.shop.layout.before_content') }}
+    {% block content %}
+    {% endblock %}
+    {{ sylius_template_event('sylius.shop.layout.after_content') }}
+</div>
+
+{% block footer %}
+    {% include '@SyliusShop/_footer.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ sylius_template_event('sylius.shop.layout.javascripts') }}
+{% endblock %}
+
+{% include '@SyliusUi/Modal/_confirmation.html.twig' %}
+{{ sylius_template_event('sylius.shop.layout.after_body') }}
+</body>
+</html>

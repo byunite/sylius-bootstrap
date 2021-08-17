@@ -1,0 +1,10 @@
+{
+  "name": "unite-sylius-bootstrap",
+  "main": "Resources/assets/js/shop.js",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap": "^5.1.0",
+    "@popperjs/core": "^2.9.3",
+    "feather-icons": "^4.28.0"
+  }
+}

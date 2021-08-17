@@ -1,0 +1,27 @@
+{% macro item(taxon, isChild) %}
+    {% import _self as macros %}
+    <li class="nav-item">
+    {% if taxon.children|length > 0 %}
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{ taxon.name }}</a>
+        <ul class="dropdown-menu">
+            {% for childTaxon in taxon.children %}
+                {{ macros.item(childTaxon, true) }}
+            {% endfor %}
+        </ul>
+    {% else %}
+        {% set active = app.request.query.get('slug') == taxon.slug %}
+        <a href="{{ path('sylius_shop_product_index', {'slug': taxon.slug, '_locale': taxon.translation.locale}) }}"
+           class="nav-link{% if active %} active{% endif %}" {{ sylius_test_html_attribute('menu-item') }}>{{ taxon.name }}</a>
+    {% endif %}
+    </li>
+{% endmacro %}
+
+{% import _self as macros %}
+
+{% if taxons|length > 0 %}
+    <ul class="nav nav-pills flex-column">
+        {% for taxon in taxons %}
+            {{ macros.item(taxon) }}
+        {% endfor %}
+    </ul>
+{% endif %}

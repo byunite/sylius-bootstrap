@@ -1,0 +1,32 @@
+<ul class="navbar-nav ms-auto">
+    {% if is_granted('ROLE_USER') %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ 'sylius.ui.hello'|trans }} {{ app.user.customer.fullName }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% for code in locales %}
+                    {% if code is not same as(active) %}
+                        <li>
+                            <a class="dropdown-item" href="{{ path('sylius_shop_account_dashboard') }}">{{ 'sylius.ui.my_account'|trans }}</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ path('sylius_shop_logout') }}" {{ sylius_test_html_attribute('logout-button') }}>{{ 'sylius.ui.logout'|trans }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </li>
+    {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('sylius_shop_login') }}">{{ 'sylius.ui.login'|trans }}</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('sylius_shop_register') }}">{{ 'sylius.ui.register'|trans }}</a>
+        </li>
+    {% endif %}
+    <li class="nav-item dropdown">
+        {{ render(url('sylius_shop_partial_cart_summary', {'template': '@SyliusShop/Cart/_widget.html.twig'})) }}
+    </li>
+</ul>
