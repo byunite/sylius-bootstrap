@@ -1,15 +1,13 @@
 {% extends '@SyliusShop/layout.html.twig' %}
-
+{% block body_class %}product--show {% if product.mainTaxon %}taxon--{{ product.mainTaxon.code }}{% endif %}{% endblock %}
 {% block title %}{{ product.name }} | {{ parent() }}{% endblock %}
 
 {% block content %}
 {% include '@SyliusShop/Product/Show/_breadcrumb.html.twig' %}
 
-<div class="row">
+<div class="row product-main-content">
     <div class="col-12 col-md-6 mb-5">
-        <div class="pr-3">
-            {{ sylius_template_event('sylius.shop.product.show.left_sidebar', _context) }}
-        </div>
+        {{ sylius_template_event('sylius.shop.product.show.left_sidebar', _context) }}
     </div>
     <div class="col-12 col-md-6 mb-5">
         {{ sylius_template_event('sylius.shop.product.show.right_sidebar', _context) }}

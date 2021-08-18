@@ -6,3 +6,8 @@ import { Tooltip, Toast, Popover, Alert } from 'bootstrap';
 
 import feather from 'feather-icons';
 feather.replace();
+
+import GLightbox from 'glightbox';
+GLightbox({
+    selector: '.glightbox',
+});

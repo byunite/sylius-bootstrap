@@ -1,3 +1,10 @@
 {% import '@SyliusShop/Common/Macro/headers.html.twig' as headers %}
 
-{{ headers.default('sylius.ui.customer_login'|trans, '', 'sylius.ui.access_your_store_account_or_create_a_new_one'|trans) }}
+<div class="d-md-flex justify-content-between">
+    <div>{{ headers.default('sylius.ui.customer_login'|trans, '', 'sylius.ui.access_your_store_account_or_create_a_new_one'|trans) }}</div>
+
+    <div class="mb-3 text-right">
+        <a href="{{ path('sylius_shop_register') }}">{{ 'sylius.ui.no_account'|trans }} {{ 'sylius.ui.create_an_account'|trans }}.</a>
+    </div>
+</div>
+

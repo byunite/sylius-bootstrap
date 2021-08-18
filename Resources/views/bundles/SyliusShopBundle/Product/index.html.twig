@@ -1,5 +1,5 @@
 {% extends '@SyliusShop/layout.html.twig' %}
-
+{% block body_class %}product--index {% if products.data|length >0 %}taxon--{{ products.data|first.mainTaxon.code }}{% endif %}{% endblock %}
 {% block content %}
 {% include '@SyliusShop/Product/Index/_header.html.twig' %}
 <div class="row">

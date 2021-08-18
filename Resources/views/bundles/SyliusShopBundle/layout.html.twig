@@ -19,7 +19,7 @@
     {{ sylius_template_event('sylius.shop.layout.head') }}
 </head>
 
-<body>
+<body class="{% block body_class %}{% endblock %}">
 {{ sylius_template_event('sylius.shop.layout.before_body') }}
 {% block top %}
     <nav class="site-navbar navbar navbar-expand-lg navbar-{{ navbar_style ?? 'light' }} {{ navbar_bg ?? '' }}">
@@ -37,15 +37,29 @@
         </div>
     </nav>
 {% endblock %}
+{% set _content = block('content') ?? null %}
+{% set _content_right = block('content_right') ?? null %}
+{% if _content_right is not empty %}
+    <div class="layout-split my-4">
+        <div class="main-layout container p-3 p-md-5">
+            {% include '@SyliusShop/_flashes.html.twig' %}
+            {{ sylius_template_event('sylius.shop.layout.before_content') }}
+            {{ _content|raw }}
+            {{ sylius_template_event('sylius.shop.layout.after_content') }}
+        </div>
+        <div class="right-layout">
+            {{ _content_right|raw }}
+        </div>
+    </div>
+{% else %}
+    <div class="container my-4">
+        {% include '@SyliusShop/_flashes.html.twig' %}
 
-<div class="container my-4">
-    {% include '@SyliusShop/_flashes.html.twig' %}
-
-    {{ sylius_template_event('sylius.shop.layout.before_content') }}
-    {% block content %}
-    {% endblock %}
-    {{ sylius_template_event('sylius.shop.layout.after_content') }}
-</div>
+        {{ sylius_template_event('sylius.shop.layout.before_content') }}
+        {{ _content|raw }}
+        {{ sylius_template_event('sylius.shop.layout.after_content') }}
+    </div>
+{% endif %}
 
 {% block footer %}
     {% include '@SyliusShop/_footer.html.twig' %}

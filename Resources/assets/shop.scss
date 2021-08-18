@@ -1,7 +1,18 @@
 @import "~bootstrap/scss/bootstrap";
+@import '~glightbox/dist/css/glightbox.min.css';
 
 .dropdown-toggle {
   .badge {
     transform: translateY(-10%);
+  }
+}
+
+.layout-split {
+  @media all and (min-width: map-get($grid-breakpoints, 'md')) {
+    display: flex;
+
+    > * {
+      flex: 1 0 50%;
+    }
   }
 }

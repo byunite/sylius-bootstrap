@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "^5.1.0",
     "@popperjs/core": "^2.9.3",
-    "feather-icons": "^4.28.0"
+    "feather-icons": "^4.28.0",
+    "glightbox": "^3.0.9"
   }
 }

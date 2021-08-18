@@ -1,0 +1,17 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% form_theme form '@SyliusShop/Form/theme.html.twig' %}
+
+{% block title %}{{ 'sylius.ui.customer_login'|trans }} | {{ parent() }}{% endblock %}
+
+{% block content %}
+    {% include '@SyliusShop/Login/_header.html.twig' %}
+
+    {{ sylius_template_event('sylius.shop.login.after_content_header') }}
+
+    <div class="card">
+        <div class="card-body">
+            {{ sylius_template_event('sylius.shop.login.main_column', _context) }}
+        </div>
+    </div>
+{% endblock %}
