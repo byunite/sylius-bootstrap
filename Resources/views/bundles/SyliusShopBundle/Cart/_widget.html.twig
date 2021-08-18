@@ -1,8 +1,8 @@
 {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
-<a class="nav-link dropdown-toggle" href="#" id="cartDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+<a class="nav-link dropdown-toggle cart-teaser" href="#" id="cartDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     {{ 'sylius.ui.cart'|trans }}
-    <span>{{ money.convertAndFormat(cart.itemsTotal) }}</span>
-    <span class="badge rounded-pill bg-primary">{{ cart.items|length }}</span>
+    <span class="price">{{ money.convertAndFormat(cart.itemsTotal) }}</span>
+    <span class="count badge rounded-pill bg-primary">{{ cart.items|length }}</span>
 </a>
 <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="cartDropdown">
     {% if cart.empty %}

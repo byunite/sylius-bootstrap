@@ -1,5 +1,5 @@
 <div class="row">
     {% for product in products %}
-            {% include '@SyliusShop/Product/_box.html.twig' %}
+            {% include '@SyliusShop/Product/_box.html.twig' with { count: 4 } %}
     {% endfor %}
 </div>

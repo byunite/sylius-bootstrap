@@ -22,7 +22,7 @@
 <body>
 {{ sylius_template_event('sylius.shop.layout.before_body') }}
 {% block top %}
-    <nav class="navbar navbar-expand-lg navbar-{{ navbar_style ?? 'light' }} {{ navbar_bg ?? '' }}">
+    <nav class="site-navbar navbar navbar-expand-lg navbar-{{ navbar_style ?? 'light' }} {{ navbar_bg ?? '' }}">
         <div class="container-fluid">
 
             {% include '@SyliusShop/Layout/Header/_logo.html.twig' %}
