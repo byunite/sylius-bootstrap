@@ -5,16 +5,12 @@
                 {{ 'sylius.ui.hello'|trans }} {{ app.user.customer.fullName }}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {% for code in locales %}
-                    {% if code is not same as(active) %}
-                        <li>
-                            <a class="dropdown-item" href="{{ path('sylius_shop_account_dashboard') }}">{{ 'sylius.ui.my_account'|trans }}</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{{ path('sylius_shop_logout') }}" {{ sylius_test_html_attribute('logout-button') }}>{{ 'sylius.ui.logout'|trans }}</a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
+                <li>
+                    <a class="dropdown-item" href="{{ path('sylius_shop_account_dashboard') }}">{{ 'sylius.ui.my_account'|trans }}</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{{ path('sylius_shop_logout') }}" {{ sylius_test_html_attribute('logout-button') }}>{{ 'sylius.ui.logout'|trans }}</a>
+                </li>
             </ul>
         </li>
     {% else %}
