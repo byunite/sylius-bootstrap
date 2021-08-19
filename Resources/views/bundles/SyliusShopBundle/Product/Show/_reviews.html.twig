@@ -1,5 +1,9 @@
-<div class="d-flex align-items-center">
-    <div>{% include '@SyliusShop/Product/_starRating.html.twig' %}</div>
-    <a href="{{ path('sylius_shop_product_review_index', {'slug': product.slug, '_locale': product.translation.locale}) }}" class="ml-3">{{ product.acceptedReviews|length }} {{ 'sylius.ui.reviews'|trans }}</a>
-    <a href="{{ path('sylius_shop_product_review_create', {'slug': product.slug, '_locale': product.translation.locale}) }}" class="ml-3">{{ 'sylius.ui.add_your_review'|trans }}</a>
-</div>
+{# <div>{% include '@SyliusShop/Product/_starRating.html.twig' %}</div>  #}
+<ul class="nav mb-3">
+    <li class="nav-item">
+        <a href="{{ path('sylius_shop_product_review_index', {'slug': product.slug, '_locale': product.translation.locale}) }}" class="nav-link ps-0">{{ product.acceptedReviews|length }} {{ 'sylius.ui.reviews'|trans }}</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ path('sylius_shop_product_review_create', {'slug': product.slug, '_locale': product.translation.locale}) }}" class="nav-link pe-0">{{ 'sylius.ui.add_your_review'|trans }}</a>
+    </li>
+</ul>

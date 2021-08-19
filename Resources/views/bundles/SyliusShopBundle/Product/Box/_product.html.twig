@@ -6,7 +6,7 @@
     </a>
     <div class="card-body" {{ sylius_test_html_attribute('product-content') }}>
         <h5 class="card-title" {{ sylius_test_html_attribute('product-name', product.name) }}>{{ product.name }}</h5>
-        <p class="card-text">{{ product.subTitle }}</p>
+        {% if product.subTitle is defined and product.subTitle %}<p class="card-text">{{ product.subTitle }}</p>{% endif %}
         <div class="d-flex align-items-center justify-content-between">
             {% if variant %}
                 <span class="text-muted sylius-product-price" {{ sylius_test_html_attribute('product-price') }}>

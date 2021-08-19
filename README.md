@@ -5,23 +5,26 @@ deeper symfony template override integration.
 
 ## Installation
 
+1. Install webpack encore
+
+2. Install this bundle:
 ```bash
 composer require unite/sylius-bootstrap-bundle
 ```
 
-Enable the bundle:
+3. Enable the bundle:
 ```bash
 Unite\SyliusBootstrapBundle\UniteSyliusBootstrapBundle::class => ['all' => true],
 ```
 
-Setting up webpack encore integration
+4. Setting up webpack encore integration
 ```json
 // package.json
 {
     ...
     "dependencies": {
         ...
-        "unite-sylius-bootstrap": ".vendor/unite/sylius-bootstrap-bundle"
+        "unite-sylius-bootstrap": "./vendor/unite/sylius-bootstrap-bundle"
     }
 }
 ```

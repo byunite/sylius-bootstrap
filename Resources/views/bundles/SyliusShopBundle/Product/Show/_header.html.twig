@@ -5,7 +5,7 @@
 </h1>
 
 {# TODO #}
-{% if product.subTitle %}
+{% if product.subTitle is defined and product.subTitle %}
 <div>
     {{ product.subTitle }}
 </div>
