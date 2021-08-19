@@ -33,8 +33,10 @@ class UniteSyliusBootstrapExtension extends Extension implements PrependExtensio
 
         $container->prependExtensionConfig('twig', ['paths' => [
             '%kernel.project_dir%/templates/bundles/SyliusShopBundle' => 'SyliusShop',
+            '%kernel.project_dir%/templates/bundles/SyliusUiBundle' => 'SyliusUi',
             '%kernel.project_dir%/templates/bundles/TwigBundle' => 'Twig',
             $bundleLocator->locate('SyliusShopBundle') => 'SyliusShop',
+            $bundleLocator->locate('SyliusUiBundle') => 'SyliusUi',
             $bundleLocator->locate('TwigBundle') => 'Twig',
         ]]);
     }

@@ -1,0 +1,28 @@
+{% extends 'knp_menu.html.twig' %}
+
+{% block root %}
+    <div class="list-group" id="myList" role="tablist">
+        {% if options.header is not defined or options.header %}
+            <span class="list-group-item list-group-item-action disabled">{{ item.label|trans }}</span>
+        {% endif %}
+        {{ block('list') }}
+    </div>
+{% endblock %}
+
+{% block list %}
+    {% for item in item.children %}
+        {{ block('item') }}
+    {% endfor %}
+{% endblock %}
+
+{% block item %}
+    <a class="list-group-item list-group-item-action{% if item.current %} active{% endif %}" href="{{ item.uri }}">
+        {{ block('icon') }}
+        {{ item.label|trans }}
+    </a>
+{% endblock %}
+
+{% block icon %}
+    {% set icon = item.labelAttribute('icon') %}
+    {% if icon %}<i class="me-2" data-feather="{{ icon }}" width="18" height="18"></i> {% endif %}
+{% endblock %}

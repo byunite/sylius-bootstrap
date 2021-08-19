@@ -1,0 +1,7 @@
+services:
+    unite.sylius_bootstrap.account_menu_event_listener:
+        class: Unite\SyliusBootstrapBundle\EventListener\AccountMenuEventListener
+        tags:
+            - { name: kernel.event_listener, event: sylius.menu.shop.account, method: alterMenu }
+        arguments:
+          [ '@request_stack' ]
