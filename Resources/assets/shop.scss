@@ -22,3 +22,29 @@
         margin-bottom: 0 !important;
     }
 }
+
+#sylius-cart-items {
+    margin-bottom: 0;
+}
+
+.sylius-quantity {
+    width: 120px;
+}
+
+.btn {
+    .btn-icon {
+        margin-right: 4px;
+    }
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.text-right {
+    text-align: right;
+}
+
+.cart-table-remove-cell {
+    width: 0;
+}

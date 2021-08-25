@@ -1,11 +1,12 @@
 <div class="card">
     {{ form_start(form, {'action': path('sylius_shop_cart_save'), 'attr': {'class': 'loadable', 'novalidate': 'novalidate', 'id': form.vars.id}}) }}
-        {{ form_errors(form) }}
-        <input type="hidden" name="_method" value="PATCH"/>
+    {{ form_errors(form) }}
+    <input type="hidden" name="_method" value="PATCH"/>
 
-        {{ sylius_template_event('sylius.shop.cart.summary.items', {'cart': cart, 'form': form}) }}
+    {{ sylius_template_event('sylius.shop.cart.summary.items', {'cart': cart, 'form': form}) }}
 
-        <table class="table" id="sylius-cart-items" {{ sylius_test_html_attribute('cart-items') }}>
+    <div class="table-responsive">
+        <table class="table align-middle" id="sylius-cart-items" {{ sylius_test_html_attribute('cart-items') }}>
             <thead class="card-header">
                 <tr>
                     <th class="border-0"></th>
@@ -21,19 +22,19 @@
                 {% endfor %}
             </tbody>
         </table>
-        <div class="card-body">
-            <div class="row">
-                {% if form.promotionCoupon is defined %}
-                    <div class="col">
-                        {{ sylius_template_event('sylius.shop.cart.coupon', {'cart': cart, 'form': form, 'main_form': form.vars.id}) }}
-                    </div>
-                {% endif %}
-
-                <div class="col text-right">
-                    {% include '@SyliusShop/Cart/Summary/_update.html.twig' %}
+    </div>
+    <div class="card-body">
+        <div class="d-flex justify-content-between g-2">
+            {% if form.promotionCoupon is defined %}
+                <div>
+                    {{ sylius_template_event('sylius.shop.cart.coupon', {'cart': cart, 'form': form, 'main_form': form.vars.id}) }}
                 </div>
+            {% endif %}
+            <div>
+                {% include '@SyliusShop/Cart/Summary/_update.html.twig' %}
             </div>
         </div>
-        {{ form_row(form._token) }}
+    </div>
+    {{ form_row(form._token) }}
     {{ form_end(form, {'render_rest': false}) }}
 </div>

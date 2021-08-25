@@ -11,3 +11,6 @@ import GLightbox from 'glightbox';
 GLightbox({
     selector: '.glightbox',
 });
+import inlineForm from './inline-form';
+
+inlineForm();
