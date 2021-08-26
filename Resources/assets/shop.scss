@@ -93,6 +93,18 @@ h5 {
     }
 }
 
+#sylius-product-variants {
+    td.text-right {
+        width: 0;
+    }
+    .form-check {
+        label {
+            &:after {
+                display: none;
+            }
+        }
+    }
+}
 
 .mollie-payments {
     display: flex;
@@ -117,8 +129,6 @@ h5 {
             }
         }
         label {
-            border: 1px solid $card-border-color;
-            border-radius: $card-border-radius;
             padding: 13px;
             display: flex;
             height: 100%;
@@ -165,4 +175,9 @@ h5 {
             display: none;
         }
     }
+}
+
+.complete-card {
+    max-width: map-get($grid-breakpoints, 'lg');
+    margin: 0 auto;
 }

@@ -1,13 +1,15 @@
-<table class="table table-bordered" id="sylius-order" {{ sylius_test_html_attribute('order-table') }}>
-    <thead>
-        {% include '@SyliusShop/Common/Order/Table/_headers.html.twig' %}
-    </thead>
-    <tbody>
-        {% include '@SyliusShop/Common/Order/Table/_items.html.twig' %}
+<div class="table-responsive">
+    <table class="table table-bordered" id="sylius-order" {{ sylius_test_html_attribute('order-table') }}>
+        <thead>
+            {% include '@SyliusShop/Common/Order/Table/_headers.html.twig' %}
+        </thead>
+        <tbody>
+            {% include '@SyliusShop/Common/Order/Table/_items.html.twig' %}
 
-        {% include '@BitBagSyliusMolliePlugin/Shop/Common/Order/Table/payment_fee.html.twig' %}
-    </tbody>
-    <tfoot class="text-right">
-        {% include '@SyliusShop/Common/Order/Table/_totals.html.twig' %}
-    </tfoot>
-</table>
+            {% include '@BitBagSyliusMolliePlugin/Shop/Common/Order/Table/payment_fee.html.twig' %}
+        </tbody>
+        <tfoot class="text-right">
+            {% include '@SyliusShop/Common/Order/Table/_totals.html.twig' %}
+        </tfoot>
+    </table>
+</div>

@@ -12,6 +12,7 @@ feather.replace();
 
 import GLightbox from 'glightbox';
 import addressBookFill from "./modules/addressBookFill";
+import provinceForm from "./modules/provinceForm";
 GLightbox({
     selector: '.glightbox',
 });
@@ -20,3 +21,4 @@ inlineForm();
 productVariant();
 checkout();
 addressBookFill();
+provinceForm();

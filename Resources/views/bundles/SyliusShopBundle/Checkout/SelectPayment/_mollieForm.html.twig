@@ -13,7 +13,7 @@
                 name="{{ methodMollie.vars.full_name }}"
                 {% if methodMollie.vars.value == choice.value %}checked{% endif %}
             >
-            <label for="choice-{{ keyChoice }}" id="{{ choice.value }}"
+            <label class="card" for="choice-{{ keyChoice }}" id="{{ choice.value }}"
                  data-feeurl="{{ path('bitbag_sylius_mollie_plugin_payment_fee_calculate', {methodId: choice.value }) }}">
                 <img class="online-payment__image" src="{{ choice.attr['image'] }}">
                 <small class="text-muted mt-1">{{ choice.label }}</small>

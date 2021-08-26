@@ -24,7 +24,7 @@
         </table>
     </div>
     <div class="card-body">
-        <div class="d-flex justify-content-between g-2">
+        <div class="d-flex justify-content-between flex-wrap gap-2">
             {% if form.promotionCoupon is defined %}
                 <div>
                     {{ sylius_template_event('sylius.shop.cart.coupon', {'cart': cart, 'form': form, 'main_form': form.vars.id}) }}
