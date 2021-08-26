@@ -1,4 +1,6 @@
 import { Tooltip, Toast, Popover, Alert } from 'bootstrap';
+import inlineForm from './modules/inlineForm';
+import productVariant from './modules/productVariant';
 
 [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]')).map(function (tooltipTriggerEl) {
     return new Tooltip(tooltipTriggerEl);
@@ -11,6 +13,6 @@ import GLightbox from 'glightbox';
 GLightbox({
     selector: '.glightbox',
 });
-import inlineForm from './inline-form';
 
 inlineForm();
+productVariant();

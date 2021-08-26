@@ -27,7 +27,7 @@
                     {{ money.calculatePrice(variant) }}
                 </label>
             </td>
-            <td class="text-right">{{ form_widget(form.cartItem.variant[key], {'label': false}) }}</td>
+            <td class="text-right">{{ form_widget(form.cartItem.variant[key], {'label': false, attr: { 'data-price': money.calculatePrice(variant) } }) }}</td>
         </tr>
     {% endfor %}
     </tbody>

@@ -13,7 +13,7 @@
                     {{ money.calculatePrice(variant) }} |
                 </span>
             {% endif %}
-            <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}" class="btn btn-primary">{{ 'sylius.ui.view_more'|trans }}</a>
+            <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale, 'variant': variant.code }) }}" class="btn btn-primary">{{ 'sylius.ui.view_more'|trans }}</a>
         </div>
     </div>
 </div>
