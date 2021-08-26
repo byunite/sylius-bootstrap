@@ -1,20 +1,38 @@
 {% for key, methodMollie in mollie_payment_options %}
     {% if key == 'molliePaymentMethods' and methodMollie.vars.choices|length > 0 %}
-		<div class="item">
-			<div class="field">
-				<div class="ui radio checkbox">
-					{{ form_widget(form, { 'attr': { 'class': 'mollie-payments' } }) }}
-				</div>
-			</div>
-			<div class="content">
-				<a class="header">{{ form_label(form) }}</a>
-				{% if method.description is not null %}
-					<div class="description">
-						<p>{{ method.description }}</p>
-					</div>
-				{% endif %}
-				{% include '@BitBagSyliusMolliePlugin/Shop/PaymentMollie/_form.html.twig' with {'gatewayConfig': method.gatewayConfig} %}
-			</div>
-		</div>
+        {% if single %}
+            <div class="visually-hidden">
+                {{ form_widget(form, { attr: { class: 'form-check-input me-1' }}) }}
+            </div>
+            <div class="molly-payment-options mb-3">
+                {% if method.description is not null %}
+                    <div class="description">
+                        <p>{{ method.description }}</p>
+                    </div>
+                {% endif %}
+                {% include '@UniteSyliusBootstrap/bundles/SyliusShopBundle/Checkout/SelectPayment/_mollieForm.html.twig' with {'gatewayConfig': method.gatewayConfig} %}
+            </div>
+        {% else %}
+            <div class="list-group mb-2" {{ sylius_test_html_attribute('payment-item') }}>
+                <label class="list-group-item" for="{{ form.vars.id }}">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-0">
+                            {{ form_widget(form, { attr: { class: 'form-check-input me-1' }}) }}
+                        </h5>
+                    </div>
+                    {% if method.description is not null %}
+                        <p class="mt-3 mb-0 text-muted">{{ method.description }}</p>
+                    {% endif %}
+                    <div class="molly-payment-options">
+                        {% if method.description is not null %}
+                            <div class="description">
+                                <p>{{ method.description }}</p>
+                            </div>
+                        {% endif %}
+                        {% include '@UniteSyliusBootstrap/bundles/SyliusShopBundle/Checkout/SelectPayment/_mollieForm.html.twig' with {'gatewayConfig': method.gatewayConfig} %}
+                    </div>
+                </label>
+            </div>
+        {% endif %}
 	{% endif %}
 {% endfor %}

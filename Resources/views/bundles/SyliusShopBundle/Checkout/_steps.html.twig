@@ -13,7 +13,7 @@
 {% set order_requires_payment = sylius_is_payment_required(order) %}
 {% set order_requires_shipping = sylius_is_shipping_required(order) %}
 
-<div class="mb-4">
+<div class="mb-5">
     <div class="nav nav-pills">
         <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ 'sylius.ui.fill_in_your_billing_and_shipping_addresses'|trans }}">
             <a class="nav-link d-flex align-items-center {{ steps['address'] }}"

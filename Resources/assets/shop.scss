@@ -48,3 +48,87 @@
 .cart-table-remove-cell {
     width: 0;
 }
+
+
+.card {
+    > .table-responsive {
+        > .table {
+            > * {
+                tr:last-child {
+                    td {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+label.required {
+    &:after {
+        content: " *";
+        color: $danger;
+    }
+}
+
+h5 {
+    > .form-check {
+        label {
+            margin-top: 3px;
+        }
+    }
+}
+
+.align-items-stretch {
+    > .col {
+        > .card {
+            min-height: 100%;
+
+            > .card-body {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+        }
+    }
+}
+
+
+.mollie-payments {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 14px;
+
+    > * {
+        width: 160px;
+        position: relative;
+        input {
+            opacity: 0;
+            position: absolute;
+
+            &:checked + label {
+                border: 4px solid $primary;
+                padding: 10px;
+            }
+        }
+        label {
+            border: 1px solid $card-border-color;
+            border-radius: $card-border-radius;
+            padding: 13px;
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            img {
+                height: 40px;
+                width: auto;
+            }
+        }
+    }
+}

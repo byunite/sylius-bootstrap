@@ -1,21 +1,15 @@
 {% import '@SyliusShop/Common/Macro/money.html.twig' as money %}
 
 <div class="list-group mb-2" {{ sylius_test_html_attribute('shipping-item') }}>
-    <div class="list-group-item flex-column align-items-start">
+    <label class="list-group-item" for="{{ form.vars.id }}">
         <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">
-                <div {{ sylius_test_html_attribute('shipping-method-checkbox') }}>
-                    {{ form_widget(form, sylius_test_form_attribute('shipping-method-select')) }}
-                </div>
-
-                <div {{ sylius_test_html_attribute('shipping-method-label') }}>
-                    {{ form_label(form) }}
-                </div>
+            <h5 class="mb-0">
+                {{ form_widget(form, { attr: { class: 'form-check-input me-1' }}) }}
             </h5>
-            <small {{ sylius_test_html_attribute('shipping-method-fee') }}>{{ money.convertAndFormat(fee) }}</small>
+            <small class="text-muted">{{ money.convertAndFormat(fee) }}</small>
         </div>
         {% if method.description is not null %}
-            <p class="mb-1">{{ method.description }}</p>
+            <p class="mt-3 mb-0 text-muted">{{ method.description }}</p>
         {% endif %}
-    </div>
+    </label>
 </div>
