@@ -38,6 +38,7 @@ class UniteSyliusBootstrapExtension extends Extension implements PrependExtensio
             $bundleLocator->locate('SyliusShopBundle') => 'SyliusShop',
             $bundleLocator->locate('SyliusUiBundle') => 'SyliusUi',
             $bundleLocator->locate('TwigBundle') => 'Twig',
+            $bundleLocator->locate('SetonoSyliusTermsPluginBundle') => 'SetonoSyliusTermsPlugin',
         ]]);
     }
 }

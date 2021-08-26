@@ -1,18 +1,18 @@
 {%
     set viewOptions = {
-        authorized: { icon: "fas fa-check", color: "primary" } ,
-        cancelled: { icon: "fas fa-ban", color: "warning" } ,
-        completed: { icon: "fas fa-adjust", color: "success" } ,
-        failed: { icon: "fas fa-ban", color: "danger" } ,
-        new: { icon: "fas fa-clock", color: "secondary" } ,
-        processing: { icon: "fas fa-check", color: "info" } ,
-        refunded: { icon: "fas fa-reply-all", color: "light" } ,
+        authorized: { icon: "check", color: "bg-primary" } ,
+        cancelled: { icon: "x", color: "bg-warning text-dark" } ,
+        completed: { icon: "check", color: "bg-success" } ,
+        failed: { icon: "x", color: "bg-danger" } ,
+        new: { icon: "clock", color: "bg-secondary" } ,
+        processing: { icon: "check", color: "bg-info text-dark" } ,
+        refunded: { icon: "repeat", color: "bg-light text-dark" } ,
 }
 %}
 
 {% set value = 'sylius.ui.' ~ state %}
 
-<span class="badge-{{ viewOptions[state]['color'] }} badge">
+<span class="{{ viewOptions[state]['color'] }} badge">
     <i class="{{ viewOptions[state]['icon'] }} icon"></i>
     {{ value|trans }}
 </span>

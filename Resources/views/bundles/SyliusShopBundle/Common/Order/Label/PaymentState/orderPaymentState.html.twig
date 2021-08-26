@@ -1,19 +1,19 @@
 {%
     set viewOptions = {
-        authorized: { icon: "fas fa-check", color: "primary" } ,
-        awaiting_payment: { icon: "fas fa-clock", color: "secondary" } ,
-        cancelled: { icon: "fas fa-ban", color: "danger" } ,
-        paid: { icon: "fas fa-adjust", color: "success" } ,
-        partially_authorized: { icon: "fas fa-ban", color: "warning" } ,
-        partially_paid: { icon: "fas fa-clock", color: "info" } ,
-        partially_refunded: { icon: "fas fa-check", color: "info" } ,
-        refunded: { icon: "fas fa-reply-all", color: "light" } ,
+        authorized: { icon: "check", color: "bg-primary" } ,
+        awaiting_payment: { icon: "clock", color: "bg-secondary" } ,
+        cancelled: { icon: "fx-square", color: "bg-danger" } ,
+        paid: { icon: "check", color: "bg-success" } ,
+        partially_authorized: { icon: "alert-triangle", color: "bg-warning text-dark" } ,
+        partially_paid: { icon: "clock", color: "bg-info text-dark" } ,
+        partially_refunded: { icon: "check", color: "bg-info text-dark" } ,
+        refunded: { icon: "repeat", color: "bg-light text-dark" } ,
     }
 %}
 
 {% set value = 'sylius.ui.' ~ state %}
 
-<span class="badge-{{ viewOptions[state]['color'] }} badge">
-    <i class="{{ viewOptions[state]['icon'] }} icon"></i>
+<span class="{{ viewOptions[state]['color'] }} badge">
+    <i data-feather="{{ viewOptions[state]['icon'] }}"></i>
     {{ 'sylius.ui.state'|trans }}: <span id="order-payment-status" {{ sylius_test_html_attribute('order-payment-state') }}>{{ value|trans }}</span>
 </span>

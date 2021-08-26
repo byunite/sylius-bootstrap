@@ -65,18 +65,20 @@
     {% endif %}
 
     {% if data|length > 0 %}
-        <table class="table">
-            <thead>
-            <tr>
-                {{ table.headers(grid, definition, app.request.attributes) }}
-            </tr>
-            </thead>
-            <tbody>
-            {% for row in data %}
-                {{ table.row(grid, definition, row) }}
-            {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead>
+                <tr>
+                    {{ table.headers(grid, definition, app.request.attributes) }}
+                </tr>
+                </thead>
+                <tbody>
+                {% for row in data %}
+                    {{ table.row(grid, definition, row) }}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% else %}
         {{ messages.info('sylius.ui.no_results_to_display') }}
     {% endif %}

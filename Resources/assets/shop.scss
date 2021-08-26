@@ -28,7 +28,10 @@
 }
 
 .sylius-quantity {
-    width: 120px;
+    width: 0;
+    input {
+        width: 80px;
+    }
 }
 
 .btn {
@@ -114,7 +117,7 @@ h5 {
     gap: 0;
     margin: 14px -8px 0;
 
-    > * {
+    .online-payment__item {
         flex: 0 0 50%;
         padding: 8px;
 
