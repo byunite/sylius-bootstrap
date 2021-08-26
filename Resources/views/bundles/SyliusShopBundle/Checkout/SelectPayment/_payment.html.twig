@@ -1,7 +1,7 @@
 {% set factoryName = constant('BitBag\\SyliusMolliePlugin\\Factory\\MollieGatewayFactory::FACTORY_NAME') %}
 
-<div class="">
-    <h1 class="mb-4">{{ 'sylius.ui.payment'|trans }} #{{ loop.index }}</h1>
+<div class="order-payment-step">
+    <h1 class="mb-4">{{ 'sylius.ui.payment'|trans }}</h1>
     <div>
         {{ form_errors(form.method) }}
 

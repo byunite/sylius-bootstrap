@@ -5,7 +5,12 @@
 {% block title %}{{ 'sylius.ui.summary_of_your_order'|trans }} | {{ parent() }}{% endblock %}
 
 {% block content %}
-    <div>
+    <div class="account-order-pay">
+
+        {% if order.paymentState in ['awaiting_payment'] %}
+            <h1 class="mb-4">{{ 'sylius.ui.payment'|trans }}</h1>
+        {% endif %}
+
         {% include '@SyliusShop/Order/_summary.html.twig' %}
 
         {% if order.paymentState in ['awaiting_payment'] %}
@@ -13,7 +18,7 @@
             <input type="hidden" name="_method" value="PUT" />
 
             {% include '@SyliusShop/Checkout/SelectPayment/_form.html.twig' %}
-            <button type="submit" class="btn btn-primary" id="sylius-pay-link" {{ sylius_test_html_attribute('pay-link') }}>
+            <button type="submit" class="btn btn-primary btn-lg" id="sylius-pay-link" {{ sylius_test_html_attribute('pay-link') }}>
                 {{ 'sylius.ui.pay'|trans }}
             </button>
 

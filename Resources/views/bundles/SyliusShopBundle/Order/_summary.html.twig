@@ -1,22 +1,21 @@
 {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
 {% import '@SyliusShop/Common/Macro/headers.html.twig' as headers %}
 
-{{ headers.default('sylius.ui.summary_of_your_order'|trans ~ ' #' ~ order.number) }}
-
-<div class="card">
+<div class="card mb-4">
     <div class="card-body">
-        <div class="d-flex">
-            <div>
-                {{ order.checkoutCompletedAt|date }}
-            </div>
-            <div class="pl-2">
-                {{ money.convertAndFormat(order.total) }}
-            </div>
-            <div class="pl-2">
-                {{ order.totalQuantity }} {{ 'sylius.ui.items'|trans|lower }}
-            </div>
-        </div>
+        <h3 class="card-title">{{ 'sylius.ui.summary_of_your_order'|trans ~ ' #' ~ order.number }}</h3>
+        <h6 class="card-subtitle mb-2 text-muted">{{ order.checkoutCompletedAt|date }}</h6>
     </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <strong>{% trans %}sylius.ui.price{% endtrans %}: </strong>
+            {{ money.convertAndFormat(order.total) }}
+        </li>
+        <li class="list-group-item">
+            <strong>{% trans %}sylius.ui.quantity{% endtrans %}: </strong>
+            {{ order.totalQuantity }} {{ 'sylius.ui.items'|trans }}
+        </li>
+    </ul>
 </div>
 
 {% include "@BitBagSyliusMolliePlugin/Shop/Grid/Action/cancelSubscriptionMollie.html.twig" with {

@@ -99,11 +99,13 @@ h5 {
     justify-content: flex-start;
     align-items: stretch;
     flex-wrap: wrap;
-    gap: 16px;
-    margin-top: 14px;
+    gap: 0;
+    margin: 14px -8px 0;
 
     > * {
-        width: 160px;
+        flex: 0 0 50%;
+        padding: 8px;
+
         position: relative;
         input {
             opacity: 0;
@@ -129,6 +131,38 @@ h5 {
                 height: 40px;
                 width: auto;
             }
+        }
+
+        @media all and (min-width: map-get($grid-breakpoints, 'md')) {
+            flex: 0 0 33.33333%;
+        }
+
+        @media all and (min-width: map-get($grid-breakpoints, 'lg')) {
+            flex: 0 0 20%;
+        }
+    }
+}
+
+
+.sortable.sorted {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.address-book-select .dropdown-item {
+    cursor: pointer;
+}
+
+.account-order-pay {
+    .order-payment-step {
+        h1 {
+            display: none;
         }
     }
 }

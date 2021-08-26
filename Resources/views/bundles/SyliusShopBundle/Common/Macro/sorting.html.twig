@@ -3,12 +3,19 @@
     {% set order = grid.getSortingOrder(field.name) %}
 
     {% if grid.isSortedBy(field.name) %}
-        <th class="sortable sorted {{ order == 'desc' ? 'descending' : 'ascending' }} sylius-table-column-{{ field.name }}">
-            <a href="{{ link(field.name, attributes, (order == 'desc' ? 'asc' : 'desc'), grid.parameters.all) }}">{{ field.label|trans }}</a>
+        <th class="sylius-table-column-{{ field.name }}">
+            <a class="sortable sorted text-black {{ order == 'desc' ? 'descending' : 'ascending' }}" href="{{ link(field.name, attributes, (order == 'desc' ? 'asc' : 'desc'), grid.parameters.all) }}">
+                {{ field.label|trans }}
+                {% if order == 'desc' %}
+                    <i data-feather="chevron-up"></i>
+                {% else %}
+                    <i data-feather="chevron-down"></i>
+                {% endif %}
+            </a>
         </th>
     {% else %}
-        <th class="sortable sylius-table-column-{{ field.name }}">
-            <a href="{{ link(field.name, attributes, order, grid.parameters.all) }}">{{ field.label|trans }}</a>
+        <th class="sylius-table-column-{{ field.name }}">
+            <a class="sortable text-black" href="{{ link(field.name, attributes, order, grid.parameters.all) }}">{{ field.label|trans }}</a>
         </th>
     {% endif %}
 {% endmacro %}

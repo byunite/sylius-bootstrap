@@ -11,6 +11,7 @@ import feather from 'feather-icons';
 feather.replace();
 
 import GLightbox from 'glightbox';
+import addressBookFill from "./modules/addressBookFill";
 GLightbox({
     selector: '.glightbox',
 });
@@ -18,3 +19,4 @@ GLightbox({
 inlineForm();
 productVariant();
 checkout();
+addressBookFill();
