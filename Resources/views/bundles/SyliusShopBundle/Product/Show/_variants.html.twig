@@ -12,15 +12,21 @@
     {% for key, variant in product.enabledVariants %}
         <tr>
             <td>
-                {{ variant.name }}
-                {% if product.hasOptions() %}
-                    <span class="text-muted">|</span>
-                    {% for optionValue in variant.optionValues %}
-                        <span class="pr-1">{{ optionValue.value }}</span>
-                    {% endfor %}
-                {% endif %}
+                <label for="{{ form.cartItem.variant[key].vars.id }}">
+                    {{ variant.name }}
+                    {% if product.hasOptions() %}
+                        <span class="text-muted">|</span>
+                        {% for optionValue in variant.optionValues %}
+                            <span class="pr-1">{{ optionValue.value }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </label>
             </td>
-            <td data-js-product-variant-price class="sylius-product-variant-price">{{ money.calculatePrice(variant) }}</td>
+            <td data-js-product-variant-price class="sylius-product-variant-price">
+                <label for="{{ form.cartItem.variant[key].vars.id }}">
+                    {{ money.calculatePrice(variant) }}
+                </label>
+            </td>
             <td class="text-right">{{ form_widget(form.cartItem.variant[key], {'label': false}) }}</td>
         </tr>
     {% endfor %}
