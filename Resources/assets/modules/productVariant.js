@@ -1,5 +1,16 @@
-function updatePrice(root, input) {
-  const price = root.querySelector('[data-js-product-price]');
+function findParentWithClass(element, className) {
+  if(element.classList.contains(className)) {
+    return element;
+  }
+  if(element === document.body) {
+    return element;
+  }
+  return findParentWithClass(element.parentElement, className);
+}
+
+function updatePrice(input) {
+  const container = findParentWithClass(input, 'product');
+  const price = container.querySelector('[data-js-product-price]');
   if(price) {
     price.innerText = input.dataset.price;
   }
@@ -10,9 +21,9 @@ export default function(root = document) {
 
     if(input.dataset.default) {
       input.checked = true;
-      updatePrice(root, input);
+      updatePrice(input);
     }
 
-    input.addEventListener('change', () => { updatePrice(root, input); });
+    input.addEventListener('change', () => { updatePrice(input); });
   });
 };
