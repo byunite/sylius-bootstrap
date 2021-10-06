@@ -6,24 +6,13 @@ function updatePrice(root, input) {
 }
 
 export default function(root = document) {
-  let variant = null;
-  const queryStr = document.location.search.split('?');
-  if(queryStr.length > 1) {
-    queryStr[1].split('&').forEach((part) => {
-      const parts = part.split('=');
-      if(parts[0] === 'variant') {
-        variant = parts[1];
-      }
-    });
-  }
-
   root.querySelectorAll(`input[name="sylius_add_to_cart[cartItem][variant]"]`).forEach((input) => {
 
-    input.addEventListener('change', () => { updatePrice(root, input); });
-
-    if(variant.length > 0 && input.value === variant) {
+    if(input.dataset.default) {
       input.checked = true;
       updatePrice(root, input);
     }
+
+    input.addEventListener('change', () => { updatePrice(root, input); });
   });
 };
