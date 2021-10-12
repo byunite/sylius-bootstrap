@@ -14,7 +14,7 @@ import provinceForm from "./modules/provinceForm";
 feather.replace();
 
 (() => {
-  GLightbox({
+  document.gLightbox = GLightbox({
     selector: '.glightbox',
   });
   inlineForm();

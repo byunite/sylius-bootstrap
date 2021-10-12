@@ -8,12 +8,48 @@ function findParentWithClass(element, className) {
   return findParentWithClass(element.parentElement, className);
 }
 
-function updatePrice(input) {
-  const container = findParentWithClass(input, 'product');
+function updatePrice(container, variant, dataset) {
   const price = container.querySelector('[data-js-product-price]');
-  if(price) {
-    price.innerText = input.dataset.price;
+  if (price) {
+    price.innerText = dataset.price;
   }
+}
+
+function updateImages(container, variant) {
+  const availableThumbs = [];
+  const thumbnails = container.querySelectorAll('[data-js-product-thumbnail]');
+  thumbnails.forEach((thumb) => {
+    const variants = [];
+    thumb.querySelectorAll('.sylius-image-variants *[data-variant-code]').forEach((v) => {
+      variants.push(v.dataset.variantCode);
+    });
+    if (variants.length === 0 || variants.includes(variant)) {
+      thumb.style.display = 'block';
+      thumb.querySelector('a').classList.add('glightbox');
+      availableThumbs.push(thumb.querySelector('a'));
+    } else {
+      thumb.querySelector('a').classList.remove('glightbox');
+      thumb.style.display = 'none';
+    }
+  });
+
+  if (availableThumbs.length > 0) {
+    const img = container.querySelector('.product--image');
+    if (img) {
+      img.style.display = 'block';
+      img.href = availableThumbs[0].href;
+      img.querySelector('img').src = availableThumbs[0].querySelector('img').dataset.largeThumbnail;
+    } else {
+      img.style.display = 'none';
+    }
+  }
+  document.gLightbox.reload();
+}
+
+function updateVariant(input) {
+  const container = findParentWithClass(input, 'product');
+  updatePrice(container, input.value, input.dataset);
+  updateImages(container, input.value, input.dataset);
 }
 
 export default function(root = document) {
@@ -21,9 +57,9 @@ export default function(root = document) {
 
     if(input.dataset.default) {
       input.checked = true;
-      updatePrice(input);
+      updateVariant(input);
     }
 
-    input.addEventListener('change', () => { updatePrice(input); });
+    input.addEventListener('change', () => { updateVariant(input); });
   });
 };

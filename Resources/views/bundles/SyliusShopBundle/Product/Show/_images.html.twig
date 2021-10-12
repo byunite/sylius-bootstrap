@@ -19,10 +19,10 @@
 
 {{ sylius_template_event('sylius.shop.product.show.before_thumbnails', {'product': product}) }}
 
-<div class="row mt-3">
+<div class="row">
     {% for image in product.images %}
-    {% set path = image.path is not null ? image.path|imagine_filter('sylius_shop_product_small_thumbnail') : '//placehold.it/200x200' %}
-    <div class="col-4" data-js-product-thumbnail>
+    {% set path = image.path is not null ? image.path|imagine_filter('sylius_shop_product_tiny_thumbnail') : '//placehold.it/200x200' %}
+    <div class="col-auto mt-2" data-js-product-thumbnail>
     {% if product.isConfigurable() and product.variants|length > 0 %}
         {% include '@SyliusShop/Product/Show/_imageVariants.html.twig' %}
     {% endif %}

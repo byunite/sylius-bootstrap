@@ -2,7 +2,11 @@
 
 <div class="d-flex align-items-center">
     <div class="me-3">
-        {% include '@SyliusShop/Product/_mainImage.html.twig' with {'product': product, 'filter': 'sylius_shop_product_tiny_thumbnail'} %}
+        {% if variant and variant.images|length > 0 %}
+            {% include '@SyliusShop/Product/_mainImage.html.twig' with {'product': variant, 'filter': 'sylius_shop_product_tiny_thumbnail'} %}
+        {% else %}
+            {% include '@SyliusShop/Product/_mainImage.html.twig' with {'product': product, 'filter': 'sylius_shop_product_tiny_thumbnail'} %}
+        {% endif %}
     </div>
     <div class="media-body">
         <h5 class="mt-0 sylius-product-name text-nowrap" {{ sylius_test_html_attribute('product-name', item.productName) }}>
