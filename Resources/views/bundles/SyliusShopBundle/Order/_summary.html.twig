@@ -4,7 +4,7 @@
 <div class="card mb-4">
     <div class="card-body">
         <h3 class="card-title">{{ 'sylius.ui.summary_of_your_order'|trans ~ ' #' ~ order.number }}</h3>
-        <h6 class="card-subtitle mb-2 text-muted">{{ order.checkoutCompletedAt|date }}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">{{ order.checkoutCompletedAt|format_datetime }}</h6>
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
