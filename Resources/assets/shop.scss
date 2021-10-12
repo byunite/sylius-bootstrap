@@ -184,3 +184,10 @@ h5 {
     max-width: map-get($grid-breakpoints, 'lg');
     margin: 0 auto;
 }
+
+.alert-heading {
+    svg {
+        transform: translateY(-2px);
+        margin-right: 2px;
+    }
+}

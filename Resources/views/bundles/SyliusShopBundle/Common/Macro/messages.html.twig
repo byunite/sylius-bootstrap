@@ -1,16 +1,15 @@
 {% macro default(message, icon, type, header) %}
-    <div class="alert alert-{{ type|default('') }}" {{ sylius_test_html_attribute('flash-message', type) }}>
-        <div class="d-flex align-items-center">
-            <span class="me-2">
-                {{ icon }}
-            </span>
-            <strong>
-                {% if type is not empty %}
-                    {{ header|default(type)|trans }}&nbsp;
-                {% endif %}
-            </strong>
+    <div class="alert alert-{{ type|default('') }} alert-dismissible fade show" {{ sylius_test_html_attribute('flash-message', type) }}>
+        <h4 class="alert-heading">
+            {{ icon }}
+            {% if type is not empty %}
+                {{ header|default(type)|trans }}&nbsp;
+            {% endif %}
+        </h4>
+        <p class="mb-0">
             {{ message|trans }}
-        </div>
+        </p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 {% endmacro %}
 
