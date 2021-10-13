@@ -1,36 +1,68 @@
-{% import "@SyliusShop/Common/Macro/icons.html.twig" as icons %}
 {% if app.session is not null and app.session.started %}
-    {% for type in ['success', 'error', 'info', 'warning'] %}
-        {% for flash in app.session.flashbag.get(type) %}
-            {% if 'error' == type %}
-                {% set result = 'danger' %}
-                {% set icon = icons.danger() %}
-            {% endif %}
-            {% if 'info' == type %}
-                {% set result = 'info' %}
-                {% set icon = icons.info() %}
-            {% endif %}
-            {% if 'success' == type %}
-                {% set result = 'success' %}
-                {% set icon = icons.success() %}
-            {% endif %}
-            <div class="alert alert-{{ result|default('info') }} alert-dismissible fade show">
-                <h4 class="alert-heading">
-                    {% if icon is defined and icon %}
-                        {{ icon }}
-                    {% endif %}
-                    {% set header = 'sylius.ui.'~type %}
-                    {{ header|trans }}
-                </h4>
-                <p class="mb-0">
-                    {% if flash is iterable %}
-                        {{ flash.message|trans(flash.parameters, 'flashes') }}
-                    {% else %}
-                        {{ flash|trans({}, 'flashes') }}
-                    {% endif %}
-                </p>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+    {% if app.request.attributes.get('_sylius').section is defined and app.request.attributes.get('_sylius').section == 'admin' %}
+        {% for type in ['success', 'error', 'info', 'warning'] %}
+            {% for flash in app.session.flashbag.get(type) %}
+                {% if 'error' == type %}
+                    {% set result = 'negative' %}
+                    {% set icon = 'remove' %}
+                {% endif %}
+                {% if 'info' == type %}
+                    {% set result = 'info' %}
+                    {% set icon = 'info' %}
+                {% endif %}
+                <div class="ui icon {{ result|default('positive') }} message sylius-flash-message">
+                    <i class="close icon"></i>
+                    <i class="{{ icon|default('checkmark') }} icon"></i>
+                    <div class="content">
+                        <div class="header">
+                            {% set header = 'sylius.ui.'~type %}
+                            {{ header|trans }}
+                        </div>
+                        <p {{ sylius_test_html_attribute('flash-messages') }}>
+                            {% if flash is iterable %}
+                                {{ flash.message|trans(flash.parameters, 'flashes') }}
+                            {% else %}
+                                {{ flash|trans({}, 'flashes') }}
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
+    {% else %}
+        {% import "@SyliusShop/Common/Macro/icons.html.twig" as icons %}
+        {% for type in ['success', 'error', 'info', 'warning'] %}
+            {% for flash in app.session.flashbag.get(type) %}
+                {% if 'error' == type %}
+                    {% set result = 'danger' %}
+                    {% set icon = icons.danger() %}
+                {% endif %}
+                {% if 'info' == type %}
+                    {% set result = 'info' %}
+                    {% set icon = icons.info() %}
+                {% endif %}
+                {% if 'success' == type %}
+                    {% set result = 'success' %}
+                    {% set icon = icons.success() %}
+                {% endif %}
+                <div class="alert alert-{{ result|default('info') }} alert-dismissible fade show">
+                    <h4 class="alert-heading">
+                        {% if icon is defined and icon %}
+                            {{ icon }}
+                        {% endif %}
+                        {% set header = 'sylius.ui.'~type %}
+                        {{ header|trans }}
+                    </h4>
+                    <p class="mb-0">
+                        {% if flash is iterable %}
+                            {{ flash.message|trans(flash.parameters, 'flashes') }}
+                        {% else %}
+                            {{ flash|trans({}, 'flashes') }}
+                        {% endif %}
+                    </p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
 {% endif %}
