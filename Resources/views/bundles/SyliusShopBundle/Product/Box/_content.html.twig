@@ -5,8 +5,10 @@
     </div>
 {% else %}
     {% for variant in product.variants %}
-        <div class="{{ class }}">
-            {% include '@SyliusShop/Product/Box/_product.html.twig' with { product: product, variant: variant } %}
-        </div>
+        {% if variant.enabled %}
+            <div class="{{ class }}">
+                {% include '@SyliusShop/Product/Box/_product.html.twig' with { product: product, variant: variant } %}
+            </div>
+        {% endif %}
     {% endfor %}
 {% endif %}
