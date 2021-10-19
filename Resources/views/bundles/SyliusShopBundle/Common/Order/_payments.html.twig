@@ -10,7 +10,17 @@
                 <div class="pe-3">{{ icons.creditCard() }}</div>
                 <div>
                     <div id="sylius-payment-method" {{ sylius_test_html_attribute('payment-method') }}>
-                        <strong>{{ payment.method }}</strong>
+                        <strong>
+                            {% if payment.method.code == 'mollie' %}
+                                {% for m_method in payment.method.gatewayConfig.mollieGatewayConfig %}
+                                    {% if m_method.methodId in payment.details.molliePaymentMethods %}
+                                        {{ m_method.name }}
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                {{ payment.method }}
+                            {% endif %}
+                        </strong>
                     </div>
 
                     <div {{ sylius_test_html_attribute('payment-price') }}>{{ money.format(payment.amount, payment.currencyCode) }}</div>
