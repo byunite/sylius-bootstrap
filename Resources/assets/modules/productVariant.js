@@ -15,7 +15,7 @@ function updatePrice(container, variant, dataset) {
   }
 }
 
-unction updateImages(container, variant) {
+function updateImages(container, variant) {
   const availableThumbs = [];
   const thumbnails = container.querySelectorAll('[data-js-product-thumbnail]');
   let first = true;
