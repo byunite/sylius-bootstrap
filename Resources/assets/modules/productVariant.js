@@ -15,17 +15,26 @@ function updatePrice(container, variant, dataset) {
   }
 }
 
-function updateImages(container, variant) {
+unction updateImages(container, variant) {
   const availableThumbs = [];
   const thumbnails = container.querySelectorAll('[data-js-product-thumbnail]');
+  let first = true;
   thumbnails.forEach((thumb) => {
     const variants = [];
     thumb.querySelectorAll('.sylius-image-variants *[data-variant-code]').forEach((v) => {
       variants.push(v.dataset.variantCode);
     });
     if (variants.length === 0 || variants.includes(variant)) {
-      thumb.style.display = 'block';
-      thumb.querySelector('a').classList.add('glightbox');
+
+      if (first) {
+        first = false;
+        thumb.querySelector('a').classList.remove('glightbox');
+        thumb.style.display = 'none';
+      } else {
+        thumb.style.display = 'block';
+        thumb.querySelector('a').classList.add('glightbox');
+      }
+
       availableThumbs.push(thumb.querySelector('a'));
     } else {
       thumb.querySelector('a').classList.remove('glightbox');
@@ -46,10 +55,19 @@ function updateImages(container, variant) {
   document.gLightbox.reload();
 }
 
+function updateUrl(container, variant) {
+  const href = new URL(document.URL);
+  if (href.searchParams.get('variant') !== variant) {
+    href.searchParams.set('variant', variant);
+    window.history.replaceState(null, null, href.toString());
+  }
+}
+
 function updateVariant(input) {
   const container = findParentWithClass(input, 'product');
   updatePrice(container, input.value, input.dataset);
   updateImages(container, input.value, input.dataset);
+  updateUrl(container, input.value, input.dataset);
 }
 
 export default function(root = document) {
