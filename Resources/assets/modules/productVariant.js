@@ -24,8 +24,11 @@ function updateImages(container, variant) {
     thumb.querySelectorAll('.sylius-image-variants *[data-variant-code]').forEach((v) => {
       variants.push(v.dataset.variantCode);
     });
-    if (variants.length === 0 || variants.includes(variant)) {
+    thumb.querySelectorAll('.sylius-image-variants *[data-variant-options]').forEach((v) => {
+      variants.push(v.dataset.variantOptions);
+    });
 
+    if (variants.length === 0 || variants.includes(variant)) {
       if (first) {
         first = false;
         thumb.querySelector('a').classList.remove('glightbox');
@@ -34,7 +37,6 @@ function updateImages(container, variant) {
         thumb.style.display = 'block';
         thumb.querySelector('a').classList.add('glightbox');
       }
-
       availableThumbs.push(thumb.querySelector('a'));
     } else {
       thumb.querySelector('a').classList.remove('glightbox');
@@ -70,6 +72,32 @@ function updateVariant(input) {
   updateUrl(container, input.value, input.dataset);
 }
 
+function handleVariantOption(form) {
+  const container = findParentWithClass(form, 'product');
+
+  let selector = '';
+  let variant = '';
+  container.querySelectorAll('select[data-option]').forEach((selectOption) => {
+    let option = selectOption.value;
+    selector += '[data-' + selectOption.dataset.option + '="' + option + '"]';
+    variant += option + ' ';
+  });
+
+  const priceContainer = container.querySelector('.sylius-variants-pricing');
+  const priceOption = priceContainer.querySelector(selector);
+  let price = '';
+  if (priceOption) {
+    price = priceOption.dataset.value;
+    container.querySelector('button[type=submit]').disabled = false;
+  } else {
+    price = priceContainer.dataset.unavailableText;
+    container.querySelector('button[type=submit]').disabled = true;
+  }
+  form.dataset.price = price;
+  updatePrice(container, form.value, form.dataset);
+  updateImages(container, variant);
+}
+
 export default function(root = document) {
   root.querySelectorAll(`input[name="sylius_add_to_cart[cartItem][variant]"]`).forEach((input) => {
 
@@ -79,5 +107,11 @@ export default function(root = document) {
     }
 
     input.addEventListener('change', () => { updateVariant(input); });
+  });
+  document.querySelectorAll('.sylius-product-adding-to-cart').forEach((form) => {
+    handleVariantOption(form);
+    form.querySelectorAll('select[data-option]').forEach((select) => {
+      select.addEventListener('change', () => { handleVariantOption(form); });
+    });
   });
 };
