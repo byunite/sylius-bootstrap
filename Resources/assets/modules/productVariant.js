@@ -108,7 +108,7 @@ export default function(root = document) {
 
     input.addEventListener('change', () => { updateVariant(input); });
   });
-  document.querySelectorAll('.sylius-product-adding-to-cart').forEach((form) => {
+  root.querySelectorAll('.sylius-product-adding-to-cart').forEach((form) => {
     handleVariantOption(form);
     form.querySelectorAll('select[data-option]').forEach((select) => {
       select.addEventListener('change', () => { handleVariantOption(form); });
