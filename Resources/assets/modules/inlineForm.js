@@ -10,7 +10,7 @@ export default function(root = document) {
         formData.append(key, data[key]);
       });
 
-      fetch(form.dataset.formAction, { method: form.dataset.formMethod || 'POST', body: formData })
+      fetch(form.dataset.formAction, { method: form.dataset.formMethod || 'POST', body: formData, headers: { 'ajax-form': true } })
         .then(() => {
           location.reload();
         });
@@ -25,7 +25,7 @@ export default function(root = document) {
       form.querySelectorAll('.ajax-form-added').forEach((el) => {
         el.remove();
       });
-      fetch(form.action, { method: form.method || 'POST', body: new FormData(form) })
+      fetch(form.action, { method: form.method || 'POST', body: new FormData(form), headers: { 'ajax-form': true } })
         .then((response) => {
           return response.redirected ? null : response.json();
         }).then((res) => {
