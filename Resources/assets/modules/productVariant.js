@@ -65,14 +65,31 @@ function updateUrl(container, variant) {
   }
 }
 
-function updateVariant(input) {
+function updateEECTracking(container, variant) {
+
+  if (!container.dataset.productVariantMap) {
+    return;
+  }
+
+  const map = JSON.parse(container.dataset.productVariantMap);
+  const v = map.find((entry) => { return entry.code === variant.trim() || entry.option === variant.trim() });
+  if (v) {
+    container.dispatchEvent(new CustomEvent('variantChanged', { detail: v }));
+  }
+}
+
+function updateVariant(input, initialCall = false) {
   const container = findParentWithClass(input, 'product');
   updatePrice(container, input.value, input.dataset);
   updateImages(container, input.value, input.dataset);
   updateUrl(container, input.value, input.dataset);
+
+  if (!initialCall) {
+    updateEECTracking(container, input.value);
+  }
 }
 
-function handleVariantOption(form) {
+function handleVariantOption(form, initialCall = false) {
   const container = findParentWithClass(form, 'product');
 
   let selector = '';
@@ -99,6 +116,10 @@ function handleVariantOption(form) {
   }
 
   updateImages(container, variant);
+
+  if (!initialCall) {
+    updateEECTracking(container, variant);
+  }
 }
 
 export default function(root = document) {
@@ -106,14 +127,14 @@ export default function(root = document) {
 
     if(input.dataset.default) {
       input.checked = true;
-      updateVariant(input);
+      updateVariant(input, true);
     }
 
     input.addEventListener('change', () => { updateVariant(input); });
   });
   root.querySelectorAll('.sylius-product-adding-to-cart').forEach((form) => {
     if(form.querySelector('select[data-option]')) {
-      handleVariantOption(form);
+      handleVariantOption(form, true);
     }
     form.querySelectorAll('select[data-option]').forEach((select) => {
       select.addEventListener('change', () => { handleVariantOption(form); });
