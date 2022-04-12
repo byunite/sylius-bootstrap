@@ -21,6 +21,11 @@ export default function(root = document) {
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       event.stopPropagation();
+
+      if(!form.reportValidity()) {
+        return;
+      }
+
       form.querySelectorAll('button').forEach((button) => { button.disabled = true; });
       form.querySelectorAll('.ajax-form-added').forEach((el) => {
         el.remove();
