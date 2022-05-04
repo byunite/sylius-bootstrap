@@ -3,9 +3,10 @@
   "main": "Resources/assets/js/shop.js",
   "version": "1.0.0",
   "dependencies": {
-    "bootstrap": "^5.1.0",
     "@popperjs/core": "^2.9.3",
+    "bootstrap": "^5.1.0",
     "feather-icons": "^4.28.0",
-    "glightbox": "^3.0.9"
+    "glightbox": "^3.0.9",
+    "js-cookie": "^3.0.1"
   }
 }
