@@ -17,7 +17,7 @@ export default function(root = document) {
         formData.append(key, data[key]);
       });
 
-      fetch(form.dataset.formAction, { method: form.dataset.formMethod || 'POST', body: formData, headers: { 'ajax-form': true } })
+      fetch(form.dataset.formAction, { method: form.dataset.formMethod || 'POST', body: formData, headers: { 'ajax-form': true }, redirect: 'manual' })
         .then(() => {
           location.reload();
         });
