@@ -37,9 +37,9 @@ export default function(root = document) {
       form.querySelectorAll('.ajax-form-added').forEach((el) => {
         el.remove();
       });
-      fetch(form.action, { method: form.method || 'POST', body: new FormData(form), headers: { 'ajax-form': true } })
+      fetch(form.action, { method: form.method || 'POST', body: new FormData(form), headers: { 'ajax-form': true }, redirect: 'manual' })
         .then((response) => {
-          return response.redirected ? null : response.json();
+          return response.type === 'opaqueredirect' ? null : response.json();
         }).then((res) => {
           if(res) {
             form.querySelectorAll('button').forEach((button) => { button.disabled = false; });
