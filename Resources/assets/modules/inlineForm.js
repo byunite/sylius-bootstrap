@@ -1,4 +1,11 @@
+import Cookies from 'js-cookie'
+
 export default function(root = document) {
+  const openCartDropdown = Cookies.get('open_cart_dropdown');
+  if (openCartDropdown === '1' && document.getElementById('cartDropdown')) {
+    Cookies.remove('open_cart_dropdown');
+    document.getElementById('cartDropdown').click();
+  }
 
   root.querySelectorAll('[data-form-action]').forEach((form) => {
     const button = form.querySelector('button');
@@ -45,7 +52,12 @@ export default function(root = document) {
               form.prepend(errorEl);
             });
           } else {
-            window.location.href = form.dataset.redirect;
+            if (form.dataset.reloadAndOpenCart === '1') {
+              Cookies.set('open_cart_dropdown', '1');
+              location.reload();
+            } else {
+              window.location.href = form.dataset.redirect;
+            }
           }
       }).catch((error) => {
           console.log(error);
