@@ -4,7 +4,8 @@
     "description": "Build your sylius shop frontend on bootstrap 5 and webpack encore",
     "keywords": ["symfony", "sylius", "bundle", "bootstrap", "template"],
     "require": {
-        "sylius/sylius": "^1.10"
+        "sylius/sylius": "^1.12",
+        "mollie/sylius-plugin": "^5.1"
     },
     "autoload": {
         "psr-4": { "Unite\\SyliusBootstrapBundle\\": "" },
